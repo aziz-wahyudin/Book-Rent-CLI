@@ -48,7 +48,7 @@ func main() {
 	for isRunning {
 		fmt.Println("\t--Menu--")
 		fmt.Println("1. Tampilkan Semua Buku")
-		fmt.Println("2. Login Atau Register")
+		fmt.Println("2. Login Atau Registrasi")
 		fmt.Println("3. Exit")
 		fmt.Println("Masukkan Input: ")
 		fmt.Scanln(&inputMenu)
@@ -59,7 +59,7 @@ func main() {
 			var menuDua bool = true
 			for menuDua {
 				fmt.Println("============================")
-				fmt.Println("Sub-Menu Login Atau Register")
+				fmt.Println("Menu Login Atau Registrasi")
 				fmt.Println("1. Registrasi")
 				fmt.Println("2. Login")
 				fmt.Println("3. Exit")
@@ -81,33 +81,7 @@ func main() {
 						fmt.Println("some error on add", err.Error())
 					}
 					fmt.Println("sukses membuat akun", res)
-					var menuRegistrasi bool = true
-					for menuRegistrasi {
-						fmt.Println("==============")
-						fmt.Println("1. Tampilkan Buku Saya")
-						fmt.Println("2. Tambah Koleksi Buku")
-						fmt.Println("3. Ubah Koleksi Buku")
-						fmt.Println("4. Pinjam Buku")
-						fmt.Println("5. Buku Pinjaman Saya")
-						fmt.Println("6. Kembalikan Buku")
-						fmt.Println("7. Update Akun")
-						fmt.Println("8. Hapus akun")
-						fmt.Println("9. Exit")
-						fmt.Scanln(&inputMenu)
-						switch inputMenu {
-						case 1:
-						case 2:
-						case 3:
-						case 4:
-						case 5:
-						case 6:
-						case 7:
-						case 8:
-						case 9:
-							callClear()
-							menuRegistrasi = false
-						}
-					}
+					fmt.Println("silakan kembali ke menu sebelumnya untuk melakukan login")
 				case 2:
 					fmt.Println("============================")
 					fmt.Println("Menu Login")
