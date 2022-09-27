@@ -12,8 +12,8 @@ type User struct {
 	Name       string
 	Email      string
 	Password   string
-	Created_at time.Time
-	Updated_at time.Time
+	Created_at time.Time `gorm:"autoCreateTime"`
+	Updated_at time.Time `gorm:"autoCreateTime"`
 }
 
 type UserModel struct {
