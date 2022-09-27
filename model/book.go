@@ -13,8 +13,8 @@ type Book struct {
 	Status     string
 	Owner      int
 	Rent_By    int
-	Created_at time.Time
-	Updated_at time.Time
+	Created_at time.Time `gorm:"autoCreateTime"`
+	Updated_at time.Time `gorm:"autoCreateTime"`
 }
 
 type BookModel struct {
@@ -23,7 +23,7 @@ type BookModel struct {
 
 func (gm BookModel) GetAll() ([]Book, error) {
 	var res []Book
-	err := gm.DB.Table("Book").Select("IdBook", "Name", "Email", "Status", "Owner","Rent_By" ,"Created_at", "Updated_at").Model(&Book{}).Find(&res).Error
+	err := gm.DB.Table("Book").Select("IdBook", "Name", "Email", "Status", "Owner", "Rent_By", "Created_at", "Updated_at").Model(&Book{}).Find(&res).Error
 	if err != nil {
 		fmt.Println("error on querry", err.Error())
 		return nil, err
