@@ -31,6 +31,7 @@ func callClear() {
 
 func migrate(db *gorm.DB) {
 	db.AutoMigrate(&model.User{})
+	db.AutoMigrate(&model.Book{})
 }
 
 func main() {
@@ -57,13 +58,16 @@ func main() {
 		case 2:
 			var menuDua bool = true
 			for menuDua {
-				fmt.Println("==============")
+				fmt.Println("============================")
+				fmt.Println("Sub-Menu Login Atau Register")
 				fmt.Println("1. Registrasi")
 				fmt.Println("2. Login")
 				fmt.Println("3. Exit")
 				fmt.Scanln(&inputMenu)
 				switch inputMenu {
 				case 1:
+					fmt.Println("============================")
+					fmt.Println("Menu Registrasi")
 					var userBaru model.User
 					fmt.Println("Masukkan Nama")
 					fmt.Scanln(&userBaru.Name)
@@ -105,6 +109,8 @@ func main() {
 						}
 					}
 				case 2:
+					fmt.Println("============================")
+					fmt.Println("Menu Login")
 					var Email string
 					var Password string
 					fmt.Println("Masukkan Email")
