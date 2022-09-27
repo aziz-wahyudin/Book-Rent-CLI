@@ -15,6 +15,7 @@ type User struct {
 	Created_at time.Time `gorm:"autoCreateTime"`
 	Updated_at time.Time `gorm:"autoCreateTime"`
 	Books      []Book    `gorm:"foreignKey:User_Id"`
+	Rents      []Rent    `gorm:"foreignKey:User_Id"`
 }
 
 type UserModel struct {

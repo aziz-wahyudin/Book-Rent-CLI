@@ -9,13 +9,14 @@ import (
 
 type Book struct {
 	IdBook     int `gorm:"primaryKey; autoIncrement:true; "`
-	User_ID    int
+	User_Id    int
 	Name       string
 	Status     string
 	Owner      int
 	Rent_By    int
 	Created_at time.Time `gorm:"autoCreateTime"`
 	Updated_at time.Time `gorm:"autoCreateTime"`
+	Rents      []Rent    `gorm:"foreignKey:IdBook"`
 }
 
 type BookModel struct {

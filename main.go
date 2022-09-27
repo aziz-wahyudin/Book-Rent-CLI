@@ -32,6 +32,7 @@ func callClear() {
 func migrate(db *gorm.DB) {
 	db.AutoMigrate(&model.User{})
 	db.AutoMigrate(&model.Book{})
+	db.AutoMigrate(&model.Rent{})
 }
 
 func main() {
