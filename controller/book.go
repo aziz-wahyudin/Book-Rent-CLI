@@ -1,22 +1,18 @@
-package control
-
-import (
-
-)
+package controller
 
 type BookControll struct {
 	Model model.Book
 }
 
 func (mc BookControll) GetAll() ([]model.Book, error) {
-	res, err := mc.Model.GetAll ()
-	if err!= nil {
+	res, err := mc.Model.GetAll()
+	if err != nil {
 		return nil, err
 	}
 	return res, nil
 }
 
-//mengambil data 
+// mengambil data
 func (gc BookControll) Add(data model.Book) (model.Book, error) {
 	res, err := gc.Model.Insert(data)
 	if err != nil {
