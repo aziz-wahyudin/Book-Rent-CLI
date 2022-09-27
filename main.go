@@ -1,6 +1,8 @@
 package main
 
 import (
+	"Alterra/Project1-BE12-Book-Rent/controller"
+	"Alterra/Project1-BE12-Book-Rent/model"
 	"fmt"
 	"os"
 	"os/exec"
@@ -39,6 +41,8 @@ func main() {
 	}
 	var isRunning bool = true
 	var inputMenu int
+	userMdl := model.UserModel{gconn}
+	userCtl := controller.UserControll{userMdl}
 
 	for isRunning {
 		fmt.Println("\t--Menu--")
@@ -60,6 +64,19 @@ func main() {
 				fmt.Scanln(&inputMenu)
 				switch inputMenu {
 				case 1:
+					var userBaru model.User
+					fmt.Println("Masukkan Nama")
+					fmt.Scanln(&userBaru.Name)
+					fmt.Println("Masukkan Email")
+					fmt.Scanln(&userBaru.Email)
+					fmt.Println("Masukkan Password")
+					fmt.Scanln(&userBaru.Password)
+
+					res, err := userCtl.Add(userBaru)
+					if err != nil {
+						fmt.Println("some error on add", err.Error())
+					}
+					fmt.Println("sukses membuat akun", res)
 					var menuRegistrasi bool = true
 					for menuRegistrasi {
 						fmt.Println("==============")
