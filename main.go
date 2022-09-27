@@ -113,10 +113,17 @@ func main() {
 						case 9:
 							callClear()
 							menuLogin = false
+
 						}
 					}
+				case 3:
+					callClear()
+					menuDua = false
 				}
 			}
+		case 3:
+			callClear()
+			isRunning = false
 		}
 	}
 }

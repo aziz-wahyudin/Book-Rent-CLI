@@ -15,3 +15,11 @@ func (uc UserControll) GetAll() ([]model.User, error) {
 	}
 	return res, nil
 }
+
+func (uc UserControll) Add(data model.User) (model.User, error) {
+	res, err := uc.Model.Insert(data)
+	if err != nil {
+		return model.User{}, err
+	}
+	return res, nil
+}

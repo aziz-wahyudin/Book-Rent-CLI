@@ -29,3 +29,12 @@ func (um UserModel) GetAll() ([]User, error) {
 	}
 	return res, nil
 }
+
+func (um UserModel) Insert(newData User) (User, error) {
+	err := um.DB.Save(&newData).Error
+	if err != nil {
+		fmt.Println("error on registrasi", err.Error())
+		return User{}, err
+	}
+	return newData, nil
+}
