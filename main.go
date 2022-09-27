@@ -41,8 +41,8 @@ func main() {
 	}
 	var isRunning bool = true
 	var inputMenu int
-	userMdl := model.UserModel{gconn}
-	userCtl := controller.UserControll{userMdl}
+	userMdl := model.UserModel{DB: gconn}
+	userCtl := controller.UserControll{Model: userMdl}
 
 	for isRunning {
 		fmt.Println("\t--Menu--")
