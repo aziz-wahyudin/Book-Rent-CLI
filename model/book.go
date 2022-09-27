@@ -14,8 +14,8 @@ type Book struct {
 	Status     string
 	Owner      int
 	Rent_By    int
-	Created_at time.Time
-	Updated_at time.Time
+	Created_at time.Time `gorm:"autoCreateTime"`
+	Updated_at time.Time `gorm:"autoCreateTime"`
 }
 
 type BookModel struct {

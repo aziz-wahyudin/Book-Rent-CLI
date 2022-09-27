@@ -12,9 +12,9 @@ type User struct {
 	Name       string
 	Email      string
 	Password   string
-	Created_at time.Time
-	Updated_at time.Time
-	Book       []Book `gorm:"foreignKey:User_ID"`
+	Created_at time.Time `gorm:"autoCreateTime"`
+	Updated_at time.Time `gorm:"autoCreateTime"`
+	Books      []Book    `gorm:"foreignKey:User_Id"`
 }
 
 type UserModel struct {
@@ -38,4 +38,15 @@ func (um UserModel) Insert(newData User) (User, error) {
 		return User{}, err
 	}
 	return newData, nil
+}
+
+func (um UserModel) Find(Email, Password string) ([]User, error) {
+	var res []User
+	err := um.DB.Table("users").Select("User_Id", "Name", "Email").Where("Email = ? AND Password = ?", Email, Password).Model(&User{}).Find(&res).Error
+	if err != nil {
+		fmt.Println("error on querry", err.Error())
+		return nil, err
+	}
+	return res, nil
+
 }
