@@ -105,6 +105,19 @@ func main() {
 						}
 					}
 				case 2:
+					var Email string
+					var Password string
+					fmt.Println("Masukkan Email")
+					fmt.Scanln(&Email)
+					fmt.Println("Masukkan Password")
+					fmt.Scanln(&Password)
+
+					res, err := userCtl.Find(Email, Password)
+					if err != nil {
+						fmt.Println("some error on find", err.Error())
+					}
+					fmt.Println("sukses login", res)
+
 					var menuLogin bool = true
 					for menuLogin {
 						fmt.Println("==============")

@@ -38,3 +38,14 @@ func (um UserModel) Insert(newData User) (User, error) {
 	}
 	return newData, nil
 }
+
+func (um UserModel) Find(Email, Password string) ([]User, error) {
+	var res []User
+	err := um.DB.Table("users").Select("User_Id", "Name", "Email").Where("Email = ? AND Password = ?", Email, Password).Model(&User{}).Find(&res).Error
+	if err != nil {
+		fmt.Println("error on querry", err.Error())
+		return nil, err
+	}
+	return res, nil
+
+}
