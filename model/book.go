@@ -9,6 +9,7 @@ import (
 
 type Book struct {
 	IdBook     int `gorm:"primaryKey; autoIncrement:true; "`
+	User_ID    int
 	Name       string
 	Status     string
 	Owner      int

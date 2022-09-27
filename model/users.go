@@ -14,6 +14,7 @@ type User struct {
 	Password   string
 	Created_at time.Time `gorm:"autoCreateTime"`
 	Updated_at time.Time `gorm:"autoCreateTime"`
+	Books      []Book    `gorm:"foreignKey:User_Id"`
 }
 
 type UserModel struct {
