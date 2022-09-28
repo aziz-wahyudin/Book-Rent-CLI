@@ -60,11 +60,10 @@ func main() {
 
 		switch inputMenu {
 		case 1:
-			res, err := bookCtl.GetAll()
-			if err != nil {
-				fmt.Println("Some error on get", err.Error())
+			fmt.Println("Daftar Buku")
+			for _, v := range bookMdl.ShowBook() {
+				fmt.Println(v)
 			}
-			fmt.Println(res)
 		case 2:
 			var menuDua bool = true
 			for menuDua {
