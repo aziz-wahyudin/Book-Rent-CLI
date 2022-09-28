@@ -138,6 +138,22 @@ func main() {
 								fmt.Println(mybook)
 							}
 						case 2:
+							fmt.Println("Tambah koleksi buku")
+							var bukuBaru model.Book
+							fmt.Println("judul buku: ")
+							fmt.Scanln(&bukuBaru.Name)
+							fmt.Println("status pinjam: ")
+							fmt.Scanln(&bukuBaru.Status)
+							bukuBaru.Owner = loginSession
+							bukuBaru.User_Id = loginSession
+
+							addedbook, err := bookCtl.Add_New(bukuBaru)
+							if err != nil {
+								fmt.Println("some error on add", err.Error())
+							} else {
+								fmt.Println("sukses menambahkan buku", addedbook)
+							}
+
 						case 3:
 						case 4:
 						case 5:

@@ -29,3 +29,21 @@ func (bc BookControll) Show(User_Id int) ([]model.Book, error) {
 	}
 	return res, nil
 }
+
+/*
+func (uc UserControll) Add(data model.User) (model.User, error) {
+	res, err := uc.Model.Insert(data)
+	if err != nil {
+		return model.User{}, err
+	}
+	return res, nil
+}
+*/
+
+func (bc BookControll) Add_New(data model.Book) (model.Book, error) {
+	res, err := bc.Model.Input(data)
+	if err != nil {
+		return model.Book{}, err
+	}
+	return res, nil
+}
