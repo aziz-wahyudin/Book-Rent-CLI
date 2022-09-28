@@ -21,3 +21,11 @@ func (gc BookControll) Add(data model.Book) (model.Book, error) {
 	}
 	return res, nil
 }
+
+func (bc BookControll) Show(User_Id int) ([]model.Book, error) {
+	res, err := bc.Model.Show(User_Id)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
