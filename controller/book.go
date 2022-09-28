@@ -6,16 +6,16 @@ type BookControll struct {
 	Model model.BookModel
 }
 
-func (mc BookControll) GetAll() ([]model.Book, error) {
-	res, err := mc.Model.GetAll()
+func (bc BookControll) GetAll() ([]model.Book, error) {
+	res, err := bc.Model.GetAll()
 	if err != nil {
 		return nil, err
 	}
 	return res, nil
 }
 
-func (gc BookControll) Add(data model.Book) (model.Book, error) {
-	res, err := gc.Model.Insert(data)
+func (bc BookControll) Add(data model.Book) (model.Book, error) {
+	res, err := bc.Model.Insert(data)
 	if err != nil {
 		return model.Book{}, err
 	}
