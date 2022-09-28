@@ -70,3 +70,12 @@ func (bm BookModel) Input(newData Book) (Book, error) {
 	}
 	return newData, nil
 }
+
+func (bm BookModel) Update(newData Book) (Book, error) {
+	err := bm.DB.Where("User_Id = ? AND id_book = ?", newData.User_Id, newData.IdBook).Updates(&newData).Error
+	if err != nil {
+		fmt.Println("error on update", err.Error())
+		return Book{}, err
+	}
+	return newData, nil
+}

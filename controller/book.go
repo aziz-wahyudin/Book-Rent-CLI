@@ -37,3 +37,11 @@ func (bc BookControll) Add_New(data model.Book) (model.Book, error) {
 	}
 	return res, nil
 }
+
+func (bc BookControll) Update(data model.Book) (model.Book, error) {
+	res, err := bc.Model.Update(data)
+	if err != nil {
+		return model.Book{}, err
+	}
+	return res, nil
+}
