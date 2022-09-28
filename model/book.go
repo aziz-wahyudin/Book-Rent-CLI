@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"gorm.io/gorm"
@@ -39,6 +40,15 @@ func (bm BookModel) Insert(newData Book) (Book, error) {
 		return Book{}, err
 	}
 	return newData, nil
+}
+
+func (bm BookModel) ShowBook() []Book {
+	var BookList = []Book{}
+	if err := bm.DB.Find(&BookList).Error; err != nil {
+		log.Print(err)
+		return nil
+	}
+	return BookList
 }
 
 func (bm BookModel) Show(User_Id int) ([]Book, error) {
