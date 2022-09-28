@@ -175,6 +175,22 @@ func main() {
 						case 5:
 						case 6:
 						case 7:
+							fmt.Println("Update info akun")
+							var updateAkun model.User
+							fmt.Println("Nama baru")
+							fmt.Scanln(&updateAkun.Name)
+							fmt.Println("Email baru")
+							fmt.Scanln(&updateAkun.Email)
+							fmt.Println("Password baru")
+							fmt.Scanln(&updateAkun.Password)
+							updateAkun.User_Id = loginSession
+
+							newAccount, err := userCtl.Update(updateAkun)
+							if err != nil {
+								fmt.Println("some error on update", err.Error())
+							} else {
+								fmt.Println("sukses mengubah info akun", newAccount)
+							}
 						case 8:
 						case 9:
 							callClear()

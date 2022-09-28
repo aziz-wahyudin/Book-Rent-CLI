@@ -50,3 +50,12 @@ func (um UserModel) Find(Email, Password string) ([]User, error) {
 	}
 	return res, nil
 }
+
+func (um UserModel) Update(newData User) (User, error) {
+	err := um.DB.Where("User_Id = ?", newData.User_Id).Updates(&newData).Error
+	if err != nil {
+		fmt.Println("error on update", err.Error())
+		return User{}, err
+	}
+	return newData, nil
+}
