@@ -31,3 +31,11 @@ func (uc UserControll) Find(Email, Password string) ([]model.User, error) {
 	}
 	return res, nil
 }
+
+func (uc UserControll) Update(data model.User) (model.User, error) {
+	res, err := uc.Model.Update(data)
+	if err != nil {
+		return model.User{}, err
+	}
+	return res, nil
+}
