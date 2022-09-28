@@ -110,8 +110,6 @@ func main() {
 						loginSession = res[0].User_Id
 						fmt.Println("login sukses")
 					}
-					fmt.Println(loginSession)
-					callClear()
 					var menuLogin bool = true
 					for menuLogin {
 						fmt.Println("==============")
@@ -125,6 +123,7 @@ func main() {
 						fmt.Println("8. Hapus akun")
 						fmt.Println("9. Exit")
 						fmt.Scanln(&inputMenu)
+						callClear()
 						switch inputMenu {
 						case 1:
 							mybook, err := bookCtl.Show(loginSession)
