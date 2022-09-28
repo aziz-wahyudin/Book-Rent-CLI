@@ -43,6 +43,7 @@ func main() {
 	}
 	var isRunning bool = true
 	var inputMenu int
+	var loginSession int
 	userMdl := model.UserModel{DB: gconn}
 	userCtl := controller.UserControll{Model: userMdl}
 
@@ -53,6 +54,7 @@ func main() {
 		fmt.Println("3. Exit")
 		fmt.Println("Masukkan Input: ")
 		fmt.Scanln(&inputMenu)
+		callClear()
 
 		switch inputMenu {
 		case 1:
@@ -65,6 +67,7 @@ func main() {
 				fmt.Println("2. Login")
 				fmt.Println("3. Exit")
 				fmt.Scanln(&inputMenu)
+				callClear()
 				switch inputMenu {
 				case 1:
 					fmt.Println("============================")
@@ -96,9 +99,12 @@ func main() {
 					res, err := userCtl.Find(Email, Password)
 					if err != nil {
 						fmt.Println("some error on find", err.Error())
+					} else {
+						loginSession = res[0].User_Id
+						fmt.Println("login sukses")
 					}
-					fmt.Println("sukses login", res)
-
+					fmt.Println(loginSession)
+					callClear()
 					var menuLogin bool = true
 					for menuLogin {
 						fmt.Println("==============")

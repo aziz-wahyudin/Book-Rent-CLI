@@ -49,5 +49,4 @@ func (um UserModel) Find(Email, Password string) ([]User, error) {
 		return nil, err
 	}
 	return res, nil
-
 }
