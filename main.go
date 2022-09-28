@@ -130,10 +130,10 @@ func main() {
 							if err != nil {
 								fmt.Println("some error on show", err.Error())
 							}
-							if mybook == nil {
+							if len(mybook) == 0 {
 								fmt.Println("anda tidak punya buku")
 							}
-							if mybook != nil {
+							if len(mybook) != 0 {
 								fmt.Println(mybook)
 							}
 						case 2:
@@ -152,8 +152,26 @@ func main() {
 							} else {
 								fmt.Println("sukses menambahkan buku", addedbook)
 							}
-
 						case 3:
+							fmt.Println("Update info buku")
+							var updateBuku model.Book
+							var inputkode int
+							fmt.Println("Pilih kode buku yang ingin anda ubah")
+							fmt.Scanln(&inputkode)
+							fmt.Println("Judul buku baru")
+							fmt.Scanln(&updateBuku.Name)
+							fmt.Println("Status buku")
+							fmt.Scanln(&updateBuku.Status)
+							updateBuku.IdBook = inputkode
+							updateBuku.User_Id = loginSession
+							updateBuku.Owner = loginSession
+
+							update, err := bookCtl.Update(updateBuku)
+							if err != nil {
+								fmt.Println("some error on update", err.Error())
+							} else {
+								fmt.Println("sukses mengubah buku", update)
+							}
 						case 4:
 						case 5:
 						case 6:
