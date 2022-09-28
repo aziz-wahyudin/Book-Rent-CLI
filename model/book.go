@@ -41,12 +41,6 @@ func (mm BookModel) Insert(newData Book) (Book, error) {
 	return newData, nil
 }
 
-/*
-// Update with conditions
-db.Model(&User{}).Where("active = ?", true).Update("name", "hello")
-// UPDATE users SET name='hello', updated_at='2013-11-17 21:34:10' WHERE active=true;
-*/
-
 func (bm BookModel) Show(User_Id int) ([]Book, error) {
 	var res []Book
 	err := bm.DB.Where("User_Id = ?", User_Id).Find(&res).Error
@@ -56,4 +50,27 @@ func (bm BookModel) Show(User_Id int) ([]Book, error) {
 	}
 	return nil, err
 
+}
+
+/*
+// Update with conditions
+db.Model(&User{}).Where("active = ?", true).Update("name", "hello")
+// UPDATE users SET name='hello', updated_at='2013-11-17 21:34:10' WHERE active=true;
+
+err := um.DB.Save(&newData).Error
+	if err != nil {
+		fmt.Println("error on registrasi", err.Error())
+		return User{}, err
+	}
+	return newData, nil
+}
+*/
+
+func (bm BookModel) Input(newData Book) (Book, error) {
+	err := bm.DB.Save(&newData).Error
+	if err != nil {
+		fmt.Println("error on adding new book", err.Error())
+		return Book{}, err
+	}
+	return newData, nil
 }
