@@ -46,6 +46,8 @@ func main() {
 	var loginSession int
 	userMdl := model.UserModel{DB: gconn}
 	userCtl := controller.UserControll{Model: userMdl}
+	bookMdl := model.BookModel{DB: gconn}
+	bookCtl := controller.BookControll{Model: bookMdl}
 
 	for isRunning {
 		fmt.Println("\t--Menu--")
@@ -120,6 +122,16 @@ func main() {
 						fmt.Scanln(&inputMenu)
 						switch inputMenu {
 						case 1:
+							mybook, err := bookCtl.Show(loginSession)
+							if err != nil {
+								fmt.Println("some error on show", err.Error())
+							}
+							if mybook == nil {
+								fmt.Println("anda tidak punya buku")
+							}
+							if mybook != nil {
+								fmt.Println(mybook)
+							}
 						case 2:
 						case 3:
 						case 4:
