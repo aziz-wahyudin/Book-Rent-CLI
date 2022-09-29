@@ -1,8 +1,7 @@
 package controller
 
-import (
-	"Alterra/Project1-BE12-Book-Rent/model"
-)
+import "Alterra/Project1-BE12-Book-Rent/model"
+
 
 type BookControll struct {
 	Model model.BookModel
