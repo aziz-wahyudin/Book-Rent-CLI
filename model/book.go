@@ -42,13 +42,13 @@ func (bm BookModel) Insert(newData Book) (Book, error) {
 	return newData, nil
 }
 
-func (bm BookModel) ShowBook() []Book {
+func (bm BookModel) ShowBook() ([]Book, error) {
 	var BookList = []Book{}
 	if err := bm.DB.Find(&BookList).Error; err != nil {
 		log.Print(err)
-		return nil
+		return nil, err
 	}
-	return BookList
+	return BookList, nil
 }
 
 func (bm BookModel) Show(User_Id int) ([]Book, error) {
