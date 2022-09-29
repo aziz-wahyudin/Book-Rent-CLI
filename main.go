@@ -61,8 +61,10 @@ func main() {
 		switch inputMenu {
 		case 1:
 			fmt.Println("Daftar Buku")
-			for _, v := range bookMdl.ShowBook() {
-				fmt.Println(v)
+			fmt.Println("")
+			res, _ := bookCtl.ShowBook()
+			for i := 0; i < len(res); i++ {
+				fmt.Printf("%v\n", res[i])
 			}
 		case 2:
 			var menuDua bool = true
