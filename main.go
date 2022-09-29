@@ -140,10 +140,9 @@ func main() {
 							var bukuBaru model.Book
 							fmt.Println("judul buku: ")
 							fmt.Scanln(&bukuBaru.Name)
-							fmt.Println("status pinjam: ")
-							fmt.Scanln(&bukuBaru.Status)
 							bukuBaru.Owner = loginSession
 							bukuBaru.User_Id = loginSession
+							bukuBaru.Status = "tersedia"
 
 							addedbook, err := bookCtl.Add_New(bukuBaru)
 							if err != nil {
@@ -159,11 +158,10 @@ func main() {
 							fmt.Scanln(&inputkode)
 							fmt.Println("Judul buku baru")
 							fmt.Scanln(&updateBuku.Name)
-							fmt.Println("Status buku")
-							fmt.Scanln(&updateBuku.Status)
 							updateBuku.IdBook = inputkode
 							updateBuku.User_Id = loginSession
 							updateBuku.Owner = loginSession
+							updateBuku.Status = "tersedia"
 
 							update, err := bookCtl.Update(updateBuku)
 							if err != nil {
