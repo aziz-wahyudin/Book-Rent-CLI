@@ -53,3 +53,11 @@ func (bc BookControll) Update(data model.Book) (model.Book, error) {
 	}
 	return res, nil
 }
+
+func (bc BookControll) Delete(IdBook int, User_Id int) (model.Book, error) {
+	res, err := bc.Model.Delete(IdBook, User_Id)
+	if err != nil {
+		return model.Book{}, err
+	}
+	return res, nil
+}
