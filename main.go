@@ -289,29 +289,31 @@ func main() {
 										fmt.Println(myrent[i].IdBook, myrent[i].Name)
 									}
 								}
-								// mengembalikan buku
-								fmt.Println("Pengembalian buku pinjaman")
-								fmt.Println("Pilih kode buku yang ingin dikembalikan:")
-								var kembalikanBuku model.Rent
-								fmt.Scanln(&kembalikanBuku.IdBook)
-								kembalikanBuku.Return_date = time.Now()
-								// update di rents
-								returnBook, err := rentCtl.ReturnBook(kembalikanBuku)
-								if err != nil {
-									fmt.Println("some error on update", err.Error())
-								} else {
-									fmt.Println("Sukses mengembalikan buku 1/2", returnBook)
-								}
-								// update di books
-								var updateKembali model.Book
-								updateKembali.IdBook = kembalikanBuku.IdBook
-								updateKembali.Status = "tersedia"
-								updateKembali.Rent_By = 0
-								returnedBook, err := bookCtl.UpdateBorrowed(updateKembali)
-								if err != nil {
-									fmt.Println("some error on update", err.Error())
-								} else {
-									fmt.Println("Sukses mengembalikan buku 2/2", returnedBook)
+								if len(myrent) != 0 {
+									// mengembalikan buku
+									fmt.Println("Pengembalian buku pinjaman")
+									fmt.Println("Pilih kode buku yang ingin dikembalikan:")
+									var kembalikanBuku model.Rent
+									fmt.Scanln(&kembalikanBuku.IdBook)
+									kembalikanBuku.Return_date = time.Now()
+									// update di rents
+									returnBook, err := rentCtl.ReturnBook(kembalikanBuku)
+									if err != nil {
+										fmt.Println("some error on update", err.Error())
+									} else {
+										fmt.Println("Sukses mengembalikan buku 1/2", returnBook)
+									}
+									// update di books
+									var updateKembali model.Book
+									updateKembali.IdBook = kembalikanBuku.IdBook
+									updateKembali.Status = "tersedia"
+									updateKembali.Rent_By = 0
+									returnedBook, err := bookCtl.UpdateBorrowed(updateKembali)
+									if err != nil {
+										fmt.Println("some error on update", err.Error())
+									} else {
+										fmt.Println("Sukses mengembalikan buku 2/2", returnedBook)
+									}
 								}
 							case 8:
 								fmt.Println("Update info akun")
