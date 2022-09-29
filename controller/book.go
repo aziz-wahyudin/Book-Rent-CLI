@@ -53,3 +53,11 @@ func (bc BookControll) Delete(IdBook int, User_Id int) (model.Book, error) {
 	}
 	return res, nil
 }
+
+func (bc BookControll) UpdateBorrowed(data model.Book) (model.Book, error) {
+	res, err := bc.Model.UpdateBorrowed(data)
+	if err != nil {
+		return model.Book{}, err
+	}
+	return res, nil
+}
