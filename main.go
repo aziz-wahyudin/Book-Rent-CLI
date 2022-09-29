@@ -160,7 +160,9 @@ func main() {
 								fmt.Println("anda tidak punya buku")
 							}
 							if len(mybook) != 0 {
-								fmt.Println(mybook)
+								for i := 0; i < len(mybook); i++ {
+									fmt.Println(mybook[i])
+								}
 							}
 						case 2:
 							fmt.Println("Tambah koleksi buku")
@@ -243,6 +245,19 @@ func main() {
 								fmt.Println("sukses mengubah buku", borrowedBook)
 							}
 						case 6:
+							fmt.Println("Buku yang saya pinjam")
+							myrent, err := bookCtl.RentedBook(loginSession)
+							if err != nil {
+								fmt.Println("some error on rentedBook", err.Error())
+							}
+							if len(myrent) == 0 {
+								fmt.Println("anda tidak meminjam buku")
+							}
+							if len(myrent) != 0 {
+								for i := 0; i < len(myrent); i++ {
+									fmt.Println(myrent[i].Name)
+								}
+							}
 						case 7:
 						case 8:
 							fmt.Println("Update info akun")

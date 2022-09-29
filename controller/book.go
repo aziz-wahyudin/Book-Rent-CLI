@@ -77,3 +77,11 @@ func (bc BookControll) DeleteAccount(User_Id int) (model.Book, error) {
 	}
 	return res, nil
 }
+
+func (bc BookControll) RentedBook(Rent_By int) ([]model.Book, error) {
+	res, err := bc.Model.RentedBook(Rent_By)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
