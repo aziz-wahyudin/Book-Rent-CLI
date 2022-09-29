@@ -67,7 +67,7 @@ func main() {
 
 			for isRunning2 {
 				var subMenu int
-				fmt.Println("\t--Submenu Tampilkan Semua Buku--")
+				fmt.Println("--Submenu Tampilkan Semua Buku--")
 				fmt.Println("============================")
 				fmt.Println("1. Pencarian Buku")
 				fmt.Println("2. Daftar Buku")
