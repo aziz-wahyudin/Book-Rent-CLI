@@ -37,3 +37,12 @@ func (rm RentModel) DeleteAccount(User_Id int) (Rent, error) {
 	}
 	return Rent{}, nil
 }
+
+func (rm RentModel) ReturnBook(newData Rent) (Rent, error) {
+	err := rm.DB.Where("id_book = ?", newData.IdBook).Updates(&newData).Error
+	if err != nil {
+		fmt.Println("error on return book", err.Error())
+		return Rent{}, err
+	}
+	return newData, nil
+}
