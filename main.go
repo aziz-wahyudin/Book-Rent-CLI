@@ -115,12 +115,13 @@ func main() {
 						fmt.Println("1. Tampilkan Buku Saya")
 						fmt.Println("2. Tambah Koleksi Buku")
 						fmt.Println("3. Ubah Koleksi Buku")
-						fmt.Println("4. Pinjam Buku")
-						fmt.Println("5. Buku Pinjaman Saya")
-						fmt.Println("6. Kembalikan Buku")
-						fmt.Println("7. Update Akun")
-						fmt.Println("8. Hapus akun")
-						fmt.Println("9. Exit")
+						fmt.Println("4. Hapus Buku")
+						fmt.Println("5. Pinjam Buku")
+						fmt.Println("6. Buku Pinjaman Saya")
+						fmt.Println("7. Kembalikan Buku")
+						fmt.Println("8. Update Akun")
+						fmt.Println("9. Hapus akun")
+						fmt.Println("10. Exit")
 						fmt.Scanln(&inputMenu)
 						callClear()
 						switch inputMenu {
@@ -170,9 +171,19 @@ func main() {
 								fmt.Println("sukses mengubah buku", update)
 							}
 						case 4:
+							var kodeBuku int
+							fmt.Println("pilih kode buku yang ingin dihapus: ")
+							fmt.Scanln(&kodeBuku)
+							deletebook, err := bookCtl.Delete(kodeBuku, loginSession)
+							if err != nil {
+								fmt.Println("some error on delete", err.Error())
+							} else {
+								fmt.Println("sukses menghapus buku", deletebook)
+							}
 						case 5:
 						case 6:
 						case 7:
+						case 8:
 							fmt.Println("Update info akun")
 							var updateAkun model.User
 							fmt.Println("Nama baru")
@@ -189,8 +200,8 @@ func main() {
 							} else {
 								fmt.Println("sukses mengubah info akun", newAccount)
 							}
-						case 8:
 						case 9:
+						case 10:
 							callClear()
 							menuLogin = false
 

@@ -79,3 +79,18 @@ func (bm BookModel) Update(newData Book) (Book, error) {
 	}
 	return newData, nil
 }
+
+/*
+// Delete with additional conditions
+db.Where("name = ?", "jinzhu").Delete(&email)
+// DELETE from emails where id = 10 AND name = "jinzhu";
+*/
+
+func (bm BookModel) Delete(IdBook int, User_Id int) (Book, error) {
+	err := bm.DB.Where("id_book = ? AND user_id = ?", IdBook, User_Id).Delete(&Book{}).Error
+	if err != nil {
+		fmt.Println("error on delete", err.Error())
+		return Book{}, err
+	}
+	return Book{}, nil
+}
