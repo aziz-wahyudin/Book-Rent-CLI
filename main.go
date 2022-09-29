@@ -362,6 +362,7 @@ func main() {
 								case "n":
 									break
 								}
+								menuLogin = false
 							case 10:
 								callClear()
 								menuLogin = false
