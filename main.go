@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
@@ -255,10 +256,49 @@ func main() {
 							}
 							if len(myrent) != 0 {
 								for i := 0; i < len(myrent); i++ {
-									fmt.Println(myrent[i].Name)
+									fmt.Println(myrent[i].IdBook, myrent[i].Name)
 								}
 							}
 						case 7:
+							// buku pinjaman
+
+							fmt.Println("Buku yang saya pinjam")
+							myrent, err := bookCtl.RentedBook(loginSession)
+							if err != nil {
+								fmt.Println("some error on rentedBook", err.Error())
+							}
+							if len(myrent) == 0 {
+								fmt.Println("anda tidak meminjam buku")
+							}
+							if len(myrent) != 0 {
+								for i := 0; i < len(myrent); i++ {
+									fmt.Println(myrent[i].IdBook, myrent[i].Name)
+								}
+							}
+
+							fmt.Println("Pengembalian buku pinjaman")
+							fmt.Println("Pilih kode buku yang ingin dikembalikan")
+							var kembalikanBuku model.Rent
+							fmt.Scanln(&kembalikanBuku.IdBook)
+							kembalikanBuku.Return_date = time.Now()
+							// update di rents
+							returnBook, err := rentCtl.ReturnBook(kembalikanBuku)
+							if err != nil {
+								fmt.Println("some error on update", err.Error())
+							} else {
+								fmt.Println("sukses mengembalikan buku", returnBook)
+							}
+							// update di books
+							var updateKembali model.Book
+							updateKembali.IdBook = kembalikanBuku.IdBook
+							updateKembali.Status = "tersedia"
+							updateKembali.Rent_By = 0
+							returnedBook, err := bookCtl.UpdateBorrowed(updateKembali)
+							if err != nil {
+								fmt.Println("some error on update", err.Error())
+							} else {
+								fmt.Println("sukses mengubah buku", returnedBook)
+							}
 						case 8:
 							fmt.Println("Update info akun")
 							var updateAkun model.User

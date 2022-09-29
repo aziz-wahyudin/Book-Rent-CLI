@@ -21,3 +21,11 @@ func (rc RentControll) DeleteAccount(User_Id int) (model.Rent, error) {
 	}
 	return res, nil
 }
+
+func (rc RentControll) ReturnBook(data model.Rent) (model.Rent, error) {
+	res, err := rc.Model.ReturnBook(data)
+	if err != nil {
+		return model.Rent{}, err
+	}
+	return res, nil
+}

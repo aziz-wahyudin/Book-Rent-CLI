@@ -109,7 +109,7 @@ func (bm BookModel) DeleteAccount(User_Id int) (Book, error) {
 
 func (bm BookModel) RentedBook(Rent_By int) ([]Book, error) {
 	var res []Book
-	err := bm.DB.Where("rent_by = ?", Rent_By).Find(&res).Error
+	err := bm.DB.Where("rent_by = ? AND status = ?", Rent_By, "tidak tersedia").Find(&res).Error
 	if err != nil {
 		fmt.Println("error on query", err.Error())
 		return nil, err
