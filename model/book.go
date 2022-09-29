@@ -116,3 +116,12 @@ func (bm BookModel) RentedBook(Rent_By int) ([]Book, error) {
 	}
 	return res, nil
 }
+func (bm BookModel) Searching(Name string) ([]Book, error) {
+	var ress []Book
+	err := bm.DB.Where(&Book{Name: Name}).Find(&ress).Error
+	if err != nil {
+		fmt.Println("error on Searching book", err.Error())
+		return nil, err
+	}
+	return ress, nil
+}
