@@ -5,9 +5,7 @@ Book Rent merupakan aplikasi peminjaman buku antar user sederhana berbasis CLI.
 # Package yang digunakan
 
 ```
-main
-model
-controller
+main, model, controller, fmt, os, os/exec, time, github.com/go-sql-driver/mysql, gorm.io/driver/mysql, gorm.io/gorm
 ```
 
 # Cara Install
