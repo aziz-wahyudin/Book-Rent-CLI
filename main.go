@@ -207,6 +207,15 @@ func main() {
 								fmt.Println("sukses menghapus buku", deletebook)
 							}
 						case 5:
+							//menampilkan daftar semua buku di sistem
+							fmt.Println("Daftar Buku")
+							fmt.Println("")
+							res, _ := bookCtl.ShowBook()
+							for i := 0; i < len(res); i++ {
+								fmt.Printf("%v\n", res[i])
+							}
+							//mencari buku tertentu berdasrkan judul
+
 							//meminjam buku
 
 							var bukuIncaran model.Rent
