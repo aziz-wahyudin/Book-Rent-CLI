@@ -62,12 +62,34 @@ func main() {
 
 		switch inputMenu {
 		case 1:
-			fmt.Println("Daftar Buku")
-			fmt.Println("")
-			res, _ := bookCtl.ShowBook()
-			for i := 0; i < len(res); i++ {
-				fmt.Printf("%v\n", res[i])
+			var isRunning2 bool = true
+
+			for isRunning2 {
+				var subMenu int
+				fmt.Println("\t--SubMenu Tampilkan Semua Buku--")
+				fmt.Println("1. Searching")
+				fmt.Println("2. Daftar Buku")
+				fmt.Println("3. Exit")
+				fmt.Println("Masukkan Input: ")
+				fmt.Scanln(&subMenu)
+				callClear()
+
+				switch subMenu {
+				case 1:
+				case 2:
+					fmt.Println("Daftar Buku")
+					fmt.Println("")
+					res, _ := bookCtl.ShowBook()
+					for i := 0; i < len(res); i++ {
+						fmt.Printf("%v\n", res[i])
+					}
+				case 3:
+					isRunning2 = false
+					callClear()
+				}
+
 			}
+
 		case 2:
 			var menuDua bool = true
 			for menuDua {
