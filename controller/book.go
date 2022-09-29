@@ -85,3 +85,10 @@ func (bc BookControll) RentedBook(Rent_By int) ([]model.Book, error) {
 	}
 	return res, nil
 }
+func (bc BookControll) Searching(Name string) ([]model.Book, error) {
+	ress, err := bc.Model.Searching(Name)
+	if err != nil {
+		return nil, err
+	}
+	return ress, nil
+}
