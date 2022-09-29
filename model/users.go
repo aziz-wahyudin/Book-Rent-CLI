@@ -59,3 +59,12 @@ func (um UserModel) Update(newData User) (User, error) {
 	}
 	return newData, nil
 }
+
+func (um UserModel) DeleteAccount(User_Id int) (User, error) {
+	err := um.DB.Where("user_id = ?", User_Id).Delete(&User{}).Error
+	if err != nil {
+		fmt.Println("error on delete account", err.Error())
+		return User{}, err
+	}
+	return User{}, nil
+}

@@ -97,3 +97,12 @@ func (bm BookModel) UpdateBorrowed(newData Book) (Book, error) {
 	}
 	return newData, nil
 }
+
+func (bm BookModel) DeleteAccount(User_Id int) (Book, error) {
+	err := bm.DB.Where("user_id = ?", User_Id).Delete(&Book{}).Error
+	if err != nil {
+		fmt.Println("error on delete account book", err.Error())
+		return Book{}, err
+	}
+	return Book{}, nil
+}
