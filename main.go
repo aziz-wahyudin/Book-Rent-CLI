@@ -76,6 +76,18 @@ func main() {
 
 				switch subMenu {
 				case 1:
+					var searchingBuku model.Book
+					fmt.Println("Mencari Buku")
+					fmt.Println("Input Judul Buku")
+					fmt.Scanln(&searchingBuku.Name)
+					result, _ := bookCtl.Searching(searchingBuku.Name)
+					if len(result) == 0 {
+						fmt.Println("Buku tidak ditemukan")
+					} else {
+						for i := 0; i < len(result); i++ {
+							fmt.Printf("%v\n", result[i])
+						}
+					}
 				case 2:
 					fmt.Println("Daftar Buku")
 					fmt.Println("")

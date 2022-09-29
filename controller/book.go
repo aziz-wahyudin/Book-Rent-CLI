@@ -1,6 +1,8 @@
 package controller
 
-import "Alterra/Project1-BE12-Book-Rent/model"
+import (
+	"Alterra/Project1-BE12-Book-Rent/model"
+)
 
 type BookControll struct {
 	Model model.BookModel
@@ -68,4 +70,12 @@ func (bc BookControll) UpdateBorrowed(data model.Book) (model.Book, error) {
 		return model.Book{}, err
 	}
 	return res, nil
+}
+
+func (bc BookControll) Searching(Name string) ([]model.Book, error) {
+	ress, err := bc.Model.Searching(Name)
+	if err != nil {
+		return nil, err
+	}
+	return ress, nil
 }
