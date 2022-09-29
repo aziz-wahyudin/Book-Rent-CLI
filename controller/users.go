@@ -39,3 +39,11 @@ func (uc UserControll) Update(data model.User) (model.User, error) {
 	}
 	return res, nil
 }
+
+func (uc UserControll) DeleteAccount(User_Id int) (model.User, error) {
+	res, err := uc.Model.DeleteAccount(User_Id)
+	if err != nil {
+		return model.User{}, err
+	}
+	return res, nil
+}

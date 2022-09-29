@@ -146,7 +146,7 @@ func main() {
 						fmt.Println("6. Buku Pinjaman Saya")
 						fmt.Println("7. Kembalikan Buku")
 						fmt.Println("8. Update Akun")
-						fmt.Println("9. Hapus akun")
+						fmt.Println("9. Hapus Akun")
 						fmt.Println("10. Exit")
 						fmt.Scanln(&inputMenu)
 						callClear()
@@ -262,6 +262,38 @@ func main() {
 								fmt.Println("sukses mengubah info akun", newAccount)
 							}
 						case 9:
+							fmt.Println("apakah anda yakin untuk menghapus akun?")
+							fmt.Println("jika ya, ketik y")
+							fmt.Println("jika tidak, ketik n")
+							var delConfirm string
+							fmt.Scanln(&delConfirm)
+							switch delConfirm {
+							case "y":
+								// menghapus rent data
+								delRentAccount, err := rentCtl.DeleteAccount(loginSession)
+								if err != nil {
+									fmt.Println("some error on delete", err.Error())
+								} else {
+									fmt.Println("sukses menghapus 1/3", delRentAccount)
+								}
+								// menghapus book data
+								delBookAccount, err := bookCtl.DeleteAccount(loginSession)
+								if err != nil {
+									fmt.Println("some error on delete", err.Error())
+								} else {
+									fmt.Println("sukses menghapus 2/3", delBookAccount)
+								}
+								// menghapus user data
+								delUserAccount, err := userCtl.DeleteAccount(loginSession)
+								if err != nil {
+									fmt.Println("some error on delete", err.Error())
+								} else {
+									fmt.Println("sukses menghapus 3/3", delUserAccount)
+								}
+							case "n":
+								break
+							}
+
 						case 10:
 							callClear()
 							menuLogin = false

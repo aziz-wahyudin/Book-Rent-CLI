@@ -28,3 +28,12 @@ func (rm RentModel) Input(newData Rent) (Rent, error) {
 	}
 	return newData, nil
 }
+
+func (rm RentModel) DeleteAccount(User_Id int) (Rent, error) {
+	err := rm.DB.Where("user_id = ?", User_Id).Delete(&Rent{}).Error
+	if err != nil {
+		fmt.Println("error on delete account rent", err.Error())
+		return Rent{}, err
+	}
+	return Rent{}, nil
+}
