@@ -48,6 +48,8 @@ func main() {
 	userCtl := controller.UserControll{Model: userMdl}
 	bookMdl := model.BookModel{DB: gconn}
 	bookCtl := controller.BookControll{Model: bookMdl}
+	rentMdl := model.RentModel{DB: gconn}
+	rentCtl := controller.RentControll{Model: rentMdl}
 
 	for isRunning {
 		fmt.Println("\t--Menu--")
@@ -183,6 +185,32 @@ func main() {
 								fmt.Println("sukses menghapus buku", deletebook)
 							}
 						case 5:
+							//meminjam buku
+
+							var bukuIncaran model.Rent
+							fmt.Println("masukkan kode buku yang ingin dipinjam")
+							fmt.Scanln(&bukuIncaran.IdBook)
+							bukuIncaran.User_Id = loginSession
+
+							borrowingBook, err := rentCtl.Add(bukuIncaran)
+							if err != nil {
+								fmt.Println("some error on borrowing a book", err.Error())
+							} else {
+								fmt.Println("sukses meminjam buku", borrowingBook)
+							}
+
+							//update status buku
+
+							var updatePinjam model.Book
+							updatePinjam.IdBook = bukuIncaran.IdBook
+							updatePinjam.Status = "tidak tersedia"
+							updatePinjam.Rent_By = loginSession
+							borrowedBook, err := bookCtl.UpdateBorrowed(updatePinjam)
+							if err != nil {
+								fmt.Println("some error on update", err.Error())
+							} else {
+								fmt.Println("sukses mengubah buku", borrowedBook)
+							}
 						case 6:
 						case 7:
 						case 8:
