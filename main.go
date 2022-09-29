@@ -88,7 +88,7 @@ func main() {
 						fmt.Println("Buku tidak ditemukan")
 					} else {
 						for i := 0; i < len(result); i++ {
-							fmt.Printf("%v\n", result[i])
+							fmt.Println(result[i].IdBook, result[i].Name, result[i].Status)
 						}
 					}
 				case 2:
@@ -97,7 +97,7 @@ func main() {
 					fmt.Println("")
 					res, _ := bookCtl.ShowBook()
 					for i := 0; i < len(res); i++ {
-						fmt.Printf("%v\n", res[i])
+						fmt.Println(res[i].IdBook, res[i].Name, res[i].Status)
 					}
 				case 3:
 					isRunning2 = false
@@ -179,7 +179,7 @@ func main() {
 								}
 								if len(mybook) != 0 {
 									for i := 0; i < len(mybook); i++ {
-										fmt.Println(mybook[i])
+										fmt.Println(mybook[i].IdBook, mybook[i].Name, mybook[i].Status)
 									}
 								}
 							case 2:
@@ -228,11 +228,14 @@ func main() {
 								}
 							case 5:
 								//menampilkan daftar semua buku di sistem
-								fmt.Println("Daftar Buku")
-								fmt.Println("")
-								res, _ := bookCtl.ShowBook()
-								for i := 0; i < len(res); i++ {
-									fmt.Printf("%v\n", res[i])
+								fmt.Println("Daftar buku yang dapat Anda pinjam")
+								availBook, _ := bookCtl.AvailableBook(loginSession)
+								if len(availBook) == 0 {
+									fmt.Println("Tidak ada buku yang dapat Anda pinjam")
+								} else {
+									for i := 0; i < len(availBook); i++ {
+										fmt.Println(availBook[i].IdBook, availBook[i].Name)
+									}
 								}
 								//meminjam buku
 								var bukuIncaran model.Rent

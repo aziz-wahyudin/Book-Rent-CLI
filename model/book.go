@@ -125,3 +125,16 @@ func (bm BookModel) Searching(Name string) ([]Book, error) {
 	}
 	return ress, nil
 }
+
+//err := bm.DB.Table("Book").Select("IdBook", "Name", "Email", "Status", "Owner", "Rent_By", "Created_at", "Updated_at").Model(&Book{}).Find(&res).Error
+
+func (bm BookModel) AvailableBook(User_Id int) ([]Book, error) {
+	var res []Book
+	err := bm.DB.Table("books").Select("id_book", "name").Where("status = ? AND User_Id <> ?", "tersedia", User_Id).Model(&Book{}).Find(&res).Error
+	if err != nil {
+		fmt.Println("error on query", err.Error())
+		return nil, err
+	}
+	return res, nil
+
+}

@@ -92,3 +92,11 @@ func (bc BookControll) Searching(Name string) ([]model.Book, error) {
 	}
 	return ress, nil
 }
+
+func (bc BookControll) AvailableBook(User_Id int) ([]model.Book, error) {
+	res, err := bc.Model.AvailableBook(User_Id)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
